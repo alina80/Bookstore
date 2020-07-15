@@ -6,11 +6,11 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Title...">
+                <input type="text" class="form-control" name="title" id="addTitle" placeholder="Title...">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="5"
+                <textarea class="form-control" name="description" id="addDescription" cols="30" rows="5"
                           placeholder="Description..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa fa-book"></i>&nbsp;Add</button>
@@ -29,11 +29,11 @@
             <legend class="voffset2">Edit book</legend>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Title...">
+                <input type="text" class="form-control" name="title" id="editTitle" placeholder="Title...">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="5"
+                <textarea class="form-control" name="description" id="editDescription" cols="30" rows="5"
                           placeholder="Description..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa fa-book"></i>&nbsp;Edit</button>
@@ -48,27 +48,27 @@
             <div class="panel-heading">Books list</div>
             <div class="panel-body">
                 <ul class="list-group" id="booksList">
-                    <!--                    EXAMPLE BOOK START-->
-                    <!--                    <li class="list-group-item">-->
-                    <!--                        <div class="panel panel-default">-->
-                    <!--                            <div class="panel-heading">-->
-                    <!--                                <span class="bookTitle">Example book 1</span>-->
-                    <!--                                <button data-id="1"-->
-                    <!--                                        class="btn btn-danger pull-right btn-xs btn-book-remove"><i-->
-                    <!--                                        class="fa fa-trash"></i>-->
-                    <!--                                </button>-->
-                    <!--                                <button data-id="1"-->
-                    <!--                                        class="btn btn-primary pull-right btn-xs btn-book-show-description"><i-->
-                    <!--                                        class="fa fa-info-circle"></i>-->
-                    <!--                                </button>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="panel-body book-description"></div>-->
-                    <!--                        </div>-->
-                    <!--                    </li>-->
-                    <!--                    EXAMPLE BOOK END-->
+
                 </ul>
             </div>
         </div>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 </div>
+
+<li class="list-group-item" style="display: none" id="bookPattern">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="bookTitle">Example book 1</span>
+            <button data-id="1"
+                    class="btn btn-danger pull-right btn-xs btn-book-remove"><i
+                        class="fa fa-trash"></i>
+            </button>
+            <button data-id="1"
+                    class="btn btn-primary pull-right btn-xs btn-book-show-description"><i
+                        class="fa fa-info-circle"></i>
+            </button>
+        </div>
+        <div class="panel-body book-description"></div>
+    </div>
+</li>
