@@ -1,3 +1,4 @@
+
 <div class="row voffset5">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -24,6 +25,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 </div>
+
 <div class="row voffset5">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -37,12 +39,14 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="editTitle" placeholder="Title...">
             </div>
+
             <div class="form-group">
-                <label for="title">Author</label>
+                <label for="author_id">Author</label>
                 <select name="author_id" id="author_id_edit" class="form-control">
                     <option value=""> -- Select Author --</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="editDescription" cols="30" rows="5"
@@ -53,6 +57,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 </div>
+
 <div class="row voffset5">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">

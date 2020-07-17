@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $jsonAuthors[] = json_decode(json_encode($author), true);
     }
     $response = ['success' => $jsonAuthors];
+
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $author = new Author($conn);
     $author->setName($_POST['name']);

@@ -5,7 +5,10 @@
  */
 class Book implements JsonSerializable
 {
-    private $id, $title, $description, $author_id, $author;
+    private $id, $title, $description, $author_id;
+    private $author_name, $author_surname;
+
+    private $author;
 
     public static $db;
 
@@ -17,6 +20,8 @@ class Book implements JsonSerializable
         $this->title = '';
         $this->description = '';
         $this->author_id = 0;
+        $this->author_name='AAAA';
+        $this->author_surname='BBBB';
     }
 
     public function save()
@@ -31,6 +36,7 @@ class Book implements JsonSerializable
                     'title'       => $this->title,
                     'description' => $this->description,
                     'author_id'   => $this->author_id,
+
                 ]
             );
         } else {
@@ -104,6 +110,8 @@ class Book implements JsonSerializable
             $book->title = $dbBook->title;
             $book->description = $dbBook->description;
             $book->author_id = $dbBook->author_id;
+//            $book->author_name = $dbBook->author_name;
+//            $book->author_surname = $dbBook->author_surname;
             $book->author = ['id' => $dbBook->author_id, 'name' => $dbBook->name, 'surname' => $dbBook->surname];
 
             $booksList[] = $book;
@@ -235,4 +243,36 @@ class Book implements JsonSerializable
 
         return $this;
     }
+    /**
+     * @return string
+     */
+    public function getAuthorName(): string
+    {
+        return $this->author_name;
+    }
+
+    /**
+     * @param string $author_name
+     */
+    public function setAuthorName(string $author_name): void
+    {
+        $this->author_name = $author_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorSurname(): string
+    {
+        return $this->author_surname;
+    }
+
+    /**
+     * @param string $author_surname
+     */
+    public function setAuthorSurname(string $author_surname): void
+    {
+        $this->author_surname = $author_surname;
+    }
+
 }

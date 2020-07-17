@@ -94,13 +94,15 @@ class Author implements JsonSerializable
             $author->name = $dbAuthor->name;
             $author->surname = $dbAuthor->surname;
             $author->books = [];
-
             $books = Book::loadAllByAuthor($db, $dbAuthor->id);
             foreach ($books as $book) {
                 $author->books[] = json_decode(json_encode($book), true);
             }
 
             $authorsList[] = $author;
+//            $aaa = serialize($authorsList[]);
+//            print($aaa);
+
         }
 
         return $authorsList;

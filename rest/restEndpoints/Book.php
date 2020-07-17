@@ -5,7 +5,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     foreach ($books as $book) {
         $jsonBooks[] = json_decode(json_encode($book), true);
     }
+
+//    $authors = Author::loadAll($conn, isset($pathId) ? $pathId : null);
+//    $jsonAuthors = [];
+//    foreach ($authors as $author) {
+//        $jsonAuthors[] = json_decode(json_encode($author), true);
+//    }
+
     $response = ['success' => $jsonBooks];
+//    $response = ['success' => $jsonAuthors];
+
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $book = new Book($conn);
     $book->setTitle($_POST['title']);
