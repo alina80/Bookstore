@@ -9,6 +9,12 @@
                 <input type="text" class="form-control" name="title" id="addTitle" placeholder="Title...">
             </div>
             <div class="form-group">
+                <label for="title">Author</label>
+                <select name="author_id" id="author_id" class="form-control">
+                    <option value=""> -- Select Author --</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="addDescription" cols="30" rows="5"
                           placeholder="Description..."></textarea>
@@ -30,6 +36,12 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="editTitle" placeholder="Title...">
+            </div>
+            <div class="form-group">
+                <label for="title">Author</label>
+                <select name="author_id" id="author_id_edit" class="form-control">
+                    <option value=""> -- Select Author --</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>

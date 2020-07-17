@@ -30,14 +30,14 @@
     margin-top : 80%;
 }
 
-.btn-book-remove {
+.btn-book-remove, .btn-author-remove {
     margin-left : 20px;
 }
 
-#bookEdit {
+#bookEdit, #authorEdit {
     display : none;
 }
 
-.book-description {
+.book-description, .authorBooksList {
     display : none;
 }

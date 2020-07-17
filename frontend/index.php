@@ -64,7 +64,7 @@
 <?php
 //check if there is subpage request
 if ($action) {
-    echo '<script src="js/'.$action.'.js"></script>';//load js file for subbage
+    echo '<script src="js/'.$action.'.js"></script>';//load js file for subpage
 }
 ?>
 </body>

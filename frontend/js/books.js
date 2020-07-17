@@ -16,15 +16,16 @@ var loadData = function(){
                 bookOption.val(elem.id);
                 $('#bookEditSelect').append(bookOption);
 
-                var pattern = $(document.querySelector('#bookPattern').cloneNode(true));
-                pattern.removeAttr('style');
-                pattern.find('.bookTitle').text(elem.title);
-                pattern.find('button').data('id', elem.id);
-                pattern.find('.book-description').text(elem.description);
-                $('#booksList').append(pattern);
+                var bookPattern = $(document.querySelector('#bookPattern').cloneNode(true));
+                bookPattern.removeAttr('style');
+                bookPattern.find('.bookTitle').text(elem.title);
+                bookPattern.find('button').data('id', elem.id);
+                bookPattern.find('.book-description').text(elem.description);
+                $('#booksList').append(bookPattern);
             });
         }
     }).fail(function (error) {
+        showModal('Error');
         console.log(error);
     });
 }
@@ -51,8 +52,10 @@ $(document).ready(function () {
                     $('#editTitle').val('');
                     $('#editDescription').val('');
                     showModal('Book successfully edited');
+                    $('#bookEdit').hide();
                 }
             }).fail(function (error) {
+                showModal('Error');
                 console.log(error);
             });
         }
@@ -76,6 +79,7 @@ $(document).ready(function () {
                     showModal('Book successfully added')
                 }
             }).fail(function (error) {
+                showModal('Error');
                 console.log(error);
             });
         }
@@ -91,17 +95,16 @@ $(document).ready(function () {
                 data: {}
             }).done(function (response) {
                 if (response.success !== undefined){
-                    console.log('book deleted');
                     loadData();
+                    showModal('Book deleted');
                 }
 
             }).fail(function (error) {
-                console.log(error);
+                showModal('Error');
             });
             $('#bookEdit').show();
         }
-
-    })
+    });
 
     $('#bookEditSelect').on('change', function (event) {
         if (!isNaN($(this).val())){
@@ -117,8 +120,8 @@ $(document).ready(function () {
                     $('#editTitle').val(book.title);
                     $('#editDescription').val(book.description);
                 }
-
             }).fail(function (error) {
+                showModal('Error');
                 console.log(error);
             });
             $('#bookEdit').show();
@@ -133,6 +136,4 @@ $(document).ready(function () {
             target.show();
         }
     });
-
-
 });

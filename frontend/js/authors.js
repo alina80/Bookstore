@@ -24,6 +24,7 @@ var loadAuthors = function(){
             });
         }
     }).fail(function (error) {
+        showModal('Error');
         console.log(error);
     });
 }
@@ -37,46 +38,25 @@ $(document).ready(function () {
         var id = $('#id').val();
         var name = $('#editName').val();
         var surname = $('#editSurname').val();
-        if (name.length > 3 && surname.length > 3){
+        if (name.length >= 3 && surname.length >= 3){
             $.ajax({
                 url:'../rest/rest.php/author/' + id,
-                method:'patch',
+                method:'PATCH',
                 dataType:'json',
                 data:{name:name,surname:surname}
             }).done(function (response) {
                 if (response !== undefined){
-                    console.log('Edited successfully');
                     loadAuthors();
                     $('#id').val('');
                     $('#editName').val('');
                     $('#editSurname').val('');
+                    showModal('Author successfully edited');
+                    $('#authorEdit').hide();
                 }
-            });
-        }
-    });
-
-    $('#authorEditSelect').on('change', function (event) {
-        if (!isNaN($(this).val())){
-            $.ajax({
-                url: '../rest/rest.php/author/' + $(this).val(),
-                method: 'GET',
-                dataType: 'json',
-                data:{}
-            }).done(function (response) {
-                if (response.success !== undefined){
-                    console.log(response);
-                    var author = response.success[0];
-
-                    $('#editName').val(author.name);
-                    $('#editSurname').val(author.surname);
-                    $('#id').val(author.id);
-                }
-
-
             }).fail(function (error) {
+                showModal('Error');
                 console.log(error);
             });
-            $('#authorEdit').show();
         }
     });
 
@@ -92,12 +72,13 @@ $(document).ready(function () {
                 data:{name:name, surname:surname}
             }).done(function (response) {
                 if (response.success !== undefined){
-                    console.log('Author added successfully');
                     loadAuthors();
                     $('#addName').val('');
                     $('#addSurname').val('');
+                    showModal('Author added successfully');
                 }
             }).fail(function (error) {
+                showModal('Error');
                 console.log(error);
             });
         }
@@ -111,8 +92,37 @@ $(document).ready(function () {
                 method:'delete',
                 dataType:'json',
                 data:{}
-            }).do
+            }).done(function (response) {
+                if (response.success !== undefined){
+                    loadAuthors();
+                    showModal('Author deleted');
+                }
+            }).fail(function (error) {
+                showModal('Error');
+            });
+            $('#authorEdit').show();
         }
+    });
 
-    })
-})
+    $('#authorEditSelect').on('change', function (event) {
+        if (!isNaN($(this).val())){
+            $.ajax({
+                url: '../rest/rest.php/author/' + $(this).val(),
+                method: 'GET',
+                dataType: 'json',
+                data:{}
+            }).done(function (response) {
+                if (response.success !== undefined) {
+                    var author = response.success[0];
+                    $('#editName').val(author.name);
+                    $('#editSurname').val(author.surname);
+                    $('#id').val(author.id);
+                }
+            }).fail(function (error) {
+                showModal('Error');
+                console.log(error);
+            });
+            $('#authorEdit').show();
+        }
+    });
+});

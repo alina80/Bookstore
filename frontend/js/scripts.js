@@ -8,7 +8,7 @@ function showModal(msg) {
     var modalTitle = modal.find('.modal-title');
     var modalBody = modal.find('.modal-body');
 
-    modalTitle.html('UWAGA');
+    modalTitle.html('Bookstore');
     modalBody.html(msg);
 
     modal.modal('show');
