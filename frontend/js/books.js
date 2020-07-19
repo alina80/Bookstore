@@ -93,8 +93,6 @@ $(document).ready(function () {
     loadAuthors();
     loadAuthorsByBookId();
 
-
-
     $('#bookEdit').on('submit',function (event) {
         event.preventDefault();
         var id = $('#id').val();
@@ -198,6 +196,7 @@ $(document).ready(function () {
 
      $('#booksList').on('click','.btn-book-show-description', function (event) {
          var target = $(this).parent().next();
+         console.log(target);
          if (target.is(':visible')){
              target.hide();
          }else {

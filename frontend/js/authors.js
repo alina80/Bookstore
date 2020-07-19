@@ -20,6 +20,7 @@ var loadAuthors = function(){
                 authorPattern.removeAttr('style');
                 authorPattern.find('.authorTitle').text(elem.name + ' ' + elem.surname);
                 authorPattern.find('button').data('id', elem.id);
+
                 $('#authorsList').append(authorPattern);
             });
         }
@@ -123,6 +124,45 @@ $(document).ready(function () {
                 console.log(error);
             });
             $('#authorEdit').show();
+        }
+    });
+
+    $('#authorsList').on('click','.btn-author-books', function (event) {
+
+        var id = $(this).data('id');
+
+        var target = $(this).parent().next();
+
+        if (target.is(':visible')){
+            target.hide();
+        }else {
+            target.show();
+
+            $.ajax({
+                url:'../rest/rest.php/book',
+                method:'get',
+                dataType:'json',
+                data:{}
+            }).done(function (response) {
+                target.find('#bookEditSelect').empty().append('<option>-- Select Book --</option>');
+                if (response.success !== undefined){
+                    response.success.forEach(function (elem) {
+                        var authorId = elem.author_id;
+
+                        if (id === authorId){
+
+                            var bookOption = $('<option></option>');
+                            bookOption.val(elem.id);
+                            bookOption.text(elem.title);
+
+                            target.find('#bookEditSelect').append(bookOption);
+                        }
+                    });
+                }
+            }).fail(function (error) {
+                showModal('Error');
+                console.log(error);
+            });
         }
     });
 });

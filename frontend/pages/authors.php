@@ -62,5 +62,10 @@
             <button data-id="1" class="btn btn-primary pull-right btn-xs btn-author-books"><i
                     class="fa fa-book"></i></button>
         </div>
+        <div class="panel authorBooksList">
+            <select name="bookEditSelect" id="bookEditSelect" class="form-control">
+                <option value=""> -- Select Book --</option>
+            </select>
+        </div>
     </div>
 </li>
