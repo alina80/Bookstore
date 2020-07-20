@@ -67,5 +67,6 @@
                 <option value=""> -- Select Book --</option>
             </select>
         </div>
+        <div class="panel book-description">xxx</div>
     </div>
 </li>

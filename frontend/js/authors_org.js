@@ -65,7 +65,7 @@ $(document).ready(function () {
         event.preventDefault();
         var name = $('#addName').val();
         var surname = $('#addSurname').val();
-        if (name.length >= 3 && surname.length >= 3){
+        if (name.length > 3 && surname.length > 3){
             $.ajax({
                 url:'../rest/rest.php/author',
                 method:'post',
@@ -133,10 +133,11 @@ $(document).ready(function () {
 
         var target = $(this).parent().next();
 
-        if (target.is(':visible') && target.find('#bookEditSelect').parent().next().is(':visible')){
+        if (target.is(':visible')){
             target.hide();
             target.find('#bookEditSelect').parent().next().hide();
         }else {
+            target.show();
 
             $.ajax({
                 url:'../rest/rest.php/book',
@@ -148,11 +149,16 @@ $(document).ready(function () {
                 if (response.success !== undefined){
                     response.success.forEach(function (elem) {
                         var authorId = elem.author_id;
+
                         if (id === authorId){
+
                             var bookOption = $('<option></option>');
                             bookOption.val(elem.id);
                             bookOption.text(elem.title);
                             target.find('#bookEditSelect').append(bookOption);
+
+
+
                         }
                     });
                 }
@@ -160,46 +166,40 @@ $(document).ready(function () {
                 showModal('Error');
                 console.log(error);
             });
-            target.show();
-            target.find('#bookEditSelect').parent().next().show();
+
+
         }
 
         $('#authorsList').on('change','#bookEditSelect', function (event) {
 
-            var id = $(this).data('id');
+            if (!isNaN($(this).val())){
+                $.ajax({
+                    url: '../rest/rest.php/book/' + $(this).val(),
+                    method: 'GET',
+                    dataType: 'json',
+                    data:{}
+                }).done(function (response) {
+                    if (response.success !== undefined) {
+                        console.log(response.success);
+                        response.success.forEach(function (elem) {
+                            var bookDescription = $('<span></span>');
+                            bookDescription.text(elem.description);
+                            var desc = target.find('#bookEditSelect').parent().next();
+                            desc.empty().append(bookDescription);
 
-            var target = $(this).parent().next();
+                        });
+                        $('.book-description').show();
 
-            if (target.is(':visible') && target.find('#bookEditSelect').parent().next().is(':visible')){
-                target.hide();
-                target.find('#bookEditSelect').parent().next().hide();
-            }else {
-                if (!isNaN($(this).val())){
-                    $.ajax({
-                        url: '../rest/rest.php/book/' + $(this).val(),
-                        method: 'GET',
-                        dataType: 'json',
-                        data:{}
-                    }).done(function (response) {
-                        if (response.success !== undefined) {
-                            response.success.forEach(function (elem) {
-                                var bookDescription = $('<span></span>');
-                                bookDescription.text(elem.description);
-                                var desc = target.find('#bookEditSelect').parent().next();
-                                desc.empty().append(bookDescription);
-                            });
-                            $('.book-description').show();
-                        }
-                    }).fail(function (error) {
-                        showModal('Error');
-                        console.log(error);
-                    });
-                }
-                target.show();
-                target.find('#bookEditSelect').parent().next().show();
+                    }
+                }).fail(function (error) {
+                    showModal('Error');
+                    console.log(error);
+                });
+                // $('#authorEdit').show();
+
             }
-
-
         });
     });
+
+
 });
